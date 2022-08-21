@@ -56,7 +56,7 @@ Matrix multiply(Matrix a, Matrix b) {
 }
 
 
-void main() {
+int main() {
 
     Matrix a = Matrix(3, 2);
     Matrix b = Matrix(2, 4);
@@ -72,4 +72,5 @@ void main() {
         }
         cout << "\n";
     }
+    return 0;
 }
