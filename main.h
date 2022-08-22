@@ -12,6 +12,7 @@ class Matrix {
 
     Matrix(int rows, int columns);
     void fill_random();
+    void print();
     double& operator()(int r, int c);
 };
 

@@ -27,6 +27,15 @@ double& Matrix::operator()(int r, int c) {
     return data[r][c];
 }
 
+void Matrix::print() {
+    for (int i = 0; i < this->rows; i++) {
+        for (int j = 0; j < this->columns; j++) {
+            cout << this->data[i][j] << "\t";
+        }
+        cout << "\n";
+    }
+}
+
 
 
 Matrix multiply(Matrix a, Matrix b) {
@@ -59,12 +68,7 @@ int main() {
     b.fill_random();
 
     Matrix result = multiply(a, b);
+    result.print();
 
-    for (int i = 0; i < a.rows; i++) {
-        for (int j = 0; j < b.columns; j++) {
-            cout << result(i, j) << "\t";
-        }
-        cout << "\n";
-    }
     return 0;
 }
