@@ -2,6 +2,14 @@
 
 using namespace std;
 
+class Vector {
+public:
+    int length;
+    double* data;
+
+    Vector(int length, double* values);
+    void print() const;
+};
 
 class Matrix {
 

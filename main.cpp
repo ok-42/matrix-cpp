@@ -5,6 +5,18 @@
 using namespace std;
 
 
+Vector::Vector(int length, double *values) {
+    this->length = length;
+    this->data = values;
+}
+
+void Vector::print() const {
+    for (int i = 0; i < this->length; i++)
+        cout << this->data[i] << "\t";
+    cout << "\n";
+}
+
+
 Matrix::Matrix(int rows, int columns) {
     this->rows = rows;
     this->columns = columns;
