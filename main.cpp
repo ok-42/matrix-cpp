@@ -1,4 +1,5 @@
 #include <iostream>
+#include <random>
 #include "main.h"
 
 using namespace std;
@@ -14,9 +15,12 @@ Matrix::Matrix(int rows, int columns) {
 }
 
 void Matrix::fill_random() {
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distrib(1, 100);
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++)
-            this->data[i][j] = rand() % 100;
+            this->data[i][j] = distrib(gen);
     }
 }
 
