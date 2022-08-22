@@ -82,14 +82,27 @@ Matrix multiply(Matrix a, Matrix b) {
 
 
 int main() {
+    double** data_a = new double* [3];
+    data_a[0] = new double[2] {1, 2};
+    data_a[1] = new double[2] {4, 6};
+    data_a[2] = new double[2] {3, 2};
 
-    Matrix a = Matrix(3, 2);
-    Matrix b = Matrix(2, 4);
+    double** data_b = new double* [2];
+    data_b[0] = new double[3] {8, 1, 3};
+    data_b[1] = new double[3] {5, 7, 2};
 
-    a.fill_random();
-    b.fill_random();
+    Matrix a = Matrix(3, 2, data_a);
+    Matrix b = Matrix(2, 3, data_b);
+
+    cout << "Matrix A:\n";
+    a.print();
+
+    cout << "Matrix B:\n";
+    b.print();
 
     Matrix result = multiply(a, b);
+
+    cout << "Result\n";
     result.print();
 
     return 0;
