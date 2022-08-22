@@ -26,6 +26,12 @@ Matrix::Matrix(int rows, int columns) {
     this->data = arr;
 }
 
+Matrix::Matrix(int rows, int columns, double** data) {
+    this->rows = rows;
+    this->columns = columns;
+    this->data = data;
+}
+
 void Matrix::fill_random() {
     random_device rd;
     mt19937 gen(rd());
