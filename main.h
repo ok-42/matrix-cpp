@@ -5,14 +5,12 @@ using namespace std;
 
 
 class Matrix {
-
-    public:
-
-    double** data;
+public:
     int rows, columns;
+    double** values;
 
     Matrix(int rows, int columns);
-    Matrix(int rows, int columns, double** data);
+    Matrix(int rows, int columns, double** values);
     void fill_random();
     void print();
     double& operator()(int r, int c);

@@ -11,13 +11,13 @@ Matrix::Matrix(int rows, int columns) {
     double** arr = new double* [rows];
     for (int i = 0; i < rows; i++)
         arr[i] = new double[columns];
-    this->data = arr;
+    this->values = arr;
 }
 
-Matrix::Matrix(int rows, int columns, double** data) {
+Matrix::Matrix(int rows, int columns, double** values) {
     this->rows = rows;
     this->columns = columns;
-    this->data = data;
+    this->values = values;
 }
 
 void Matrix::fill_random() {
@@ -26,7 +26,7 @@ void Matrix::fill_random() {
     uniform_int_distribution<> distrib(1, 100);
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++)
-            this->data[i][j] = distrib(gen);
+            this->values[i][j] = distrib(gen);
     }
 }
 
@@ -34,13 +34,13 @@ double& Matrix::operator()(int r, int c) {
     if (r >= this->rows or c >= this->columns) {
         throw "Index is out of bounds";
     }
-    return data[r][c];
+    return this->values[r][c];
 }
 
 void Matrix::print() {
     for (int i = 0; i < this->rows; i++) {
         for (int j = 0; j < this->columns; j++) {
-            cout << this->data[i][j] << "\t";
+            cout << this->values[i][j] << "\t";
         }
         cout << "\n";
     }
