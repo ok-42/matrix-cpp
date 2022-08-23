@@ -17,6 +17,7 @@ public:
 };
 
 extern "C" {
+    Matrix make_matrix(int rows, Vector* vectors);
     Matrix multiply(Matrix a, Matrix b);
     int main();
 }

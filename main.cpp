@@ -46,7 +46,13 @@ void Matrix::print() {
     }
 }
 
-
+Matrix make_matrix(int rows, Vector* vectors) {
+    double** copy = new double* [rows];
+    for (int i = 0; i < rows; ++i) {
+        copy[i] = vectors[i].values;
+    }
+    return Matrix(rows, vectors[0].length, copy);
+}
 
 Matrix multiply(Matrix a, Matrix b) {
 
