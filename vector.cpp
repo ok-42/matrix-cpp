@@ -21,3 +21,7 @@ Vector make_vector(int length, double* values) {
     }
     return Vector(length, copy);
 }
+
+void print_vector(Vector vector) {
+    vector.print();
+}

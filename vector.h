@@ -9,4 +9,5 @@ public:
 
 extern "C" {
     Vector make_vector(int length, double* values);
+    void print_vector(Vector vector);
 }
