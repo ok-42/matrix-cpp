@@ -20,6 +20,10 @@ Matrix::Matrix(int rows, int columns, double** values) {
     this->values = values;
 }
 
+Matrix make_matrix_orig(int rows, int columns, double** values) {
+    return Matrix(rows, columns, values);
+}
+
 void Matrix::fill_random() {
     random_device rd;
     mt19937 gen(rd());

@@ -4,6 +4,7 @@ from ctypes import (
     Structure,
     c_double,
     c_int,
+    cast,
 )
 from typing import List
 
@@ -27,6 +28,10 @@ make_matrix = lib.make_matrix
 lib.make_matrix.argtypes = [c_int, POINTER(Vector)]
 lib.make_matrix.restype = Matrix
 
+make_matrix_orig = lib.make_matrix_orig
+lib.make_matrix_orig.argtypes = [c_int, c_int, POINTER(POINTER(c_double))]
+lib.make_matrix_orig.restype = Matrix
+
 print_matrix = lib.print_matrix
 print_matrix.argtypes = [Matrix]
 print_matrix.restype = None
@@ -42,6 +47,28 @@ def make_matrix_python(values: List[List[float]]):
         vectors.append(make_vector_python(row))
     n_rows = len(values)
     return make_matrix(n_rows, (Vector * n_rows)(*vectors))
+
+
+# https://stackoverflow.com/a/58262388
+def make_matrix_python_2(values: List[List[float]]):
+    rows = len(values)
+    cols = len(values[0])
+    values = tuple(tuple(row) for row in values)
+
+    double_ptr = POINTER(c_double)
+    double_ptr_arr = double_ptr * rows
+    double_array_array = (c_double * cols) * rows
+    in_arr = double_array_array(*values)
+    in_ptr = cast(
+        double_ptr_arr(
+            *(
+                cast(row, double_ptr)
+                for row in in_arr
+            )
+        ),
+        POINTER(POINTER(c_double))
+    )
+    return make_matrix_orig(c_int(rows), c_int(cols), in_ptr)
 
 
 a = make_matrix_python([
