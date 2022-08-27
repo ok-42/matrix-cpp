@@ -10,6 +10,8 @@ from typing import List
 
 from vector import make_vector_python, Vector
 
+MatrixType = List[List[float]]
+
 
 class Matrix(Structure):
     _fields_ = [
@@ -41,7 +43,7 @@ multiply.argtypes = [Matrix, Matrix]
 multiply.restype = Matrix
 
 
-def make_matrix_python(values: List[List[float]]):
+def make_matrix_python(values: MatrixType):
     vectors: List[Vector] = []
     for row in values:
         vectors.append(make_vector_python(row))
@@ -50,7 +52,7 @@ def make_matrix_python(values: List[List[float]]):
 
 
 # https://stackoverflow.com/a/58262388
-def make_matrix_python_2(values: List[List[float]]):
+def make_matrix_python_2(values: MatrixType):
     rows = len(values)
     cols = len(values[0])
     values = tuple(tuple(row) for row in values)
