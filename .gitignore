@@ -31,5 +31,11 @@
 *.out
 *.app
 
-/.idea/
-/cmake-build-debug/
+.idea/
+__pycache__/
+build/
+cmake-build-debug/
+dist/
+mc.egg-info/
+mc/__pycache__/
+venv/
