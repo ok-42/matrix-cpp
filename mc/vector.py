@@ -1,3 +1,4 @@
+import pathlib
 from ctypes import (
     CDLL,
     POINTER,
@@ -15,7 +16,7 @@ class Vector(Structure):
     ]
 
 
-lib = CDLL('./lib.so')
+lib = CDLL(str(pathlib.Path(__file__).parent.parent / 'ct.so'))
 
 make_vector = lib.make_vector
 make_vector.argtypes = [c_int, POINTER(c_double)]

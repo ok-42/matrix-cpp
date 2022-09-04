@@ -1,3 +1,4 @@
+import pathlib
 from ctypes import (
     CDLL,
     POINTER,
@@ -21,7 +22,7 @@ class Matrix(Structure):
     ]
 
 
-lib = CDLL('./lib.so')
+lib = CDLL(str(pathlib.Path(__file__).parent.parent / 'ct.so'))
 
 main = lib.main
 main.restype = c_int
