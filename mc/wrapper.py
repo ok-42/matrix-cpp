@@ -8,7 +8,7 @@ from ctypes import (
 )
 from typing import List
 
-from vector import make_vector_python, Vector
+from .vector import make_vector_python, Vector
 
 MatrixType = List[List[float]]
 
