@@ -5,7 +5,7 @@ from typing import Callable
 
 import numpy as np
 
-from wrapper import (
+from mc.wrapper import (
     make_matrix_python,
     make_matrix_python_2,
     multiply,
