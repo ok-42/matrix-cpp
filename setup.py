@@ -1,6 +1,9 @@
 # Magic from https://stackoverflow.com/a/34830639
 
-from setuptools import find_packages
+# Current setup.py file works if Python and C++ files
+# are located in the same directory:
+# https://github.com/himbeles/ctypes-example
+
 from distutils.core import setup, Extension
 from distutils.command.build_ext import build_ext as build_ext_orig
 
@@ -27,24 +30,19 @@ class CTypes(Extension):
 
 
 files = [
-    'cpp/main.cpp', 'cpp/vector.cpp',
+    'mc/main.cpp', 'mc/vector.cpp',
 ]
 
 setup(
     name='mc',
     version='1.0',
+    py_modules=['mc.wrapper', 'mc.vector'],
     ext_modules=[
         CTypes(
-            'ct',
+            'mc.main',
             sources=files,
-            include_dirs=['.']
-        ),
-        Extension(
-            'ext',
-            sources=files,
-            include_dirs=['.']
+            include_dirs=['mc']
         )
     ],
     cmdclass={'build_ext': build_ext},
-    packages=find_packages()
 )
