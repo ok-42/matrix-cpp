@@ -33,16 +33,17 @@ files = [
 setup(
     name='mc',
     version='1.0',
+    py_modules=['mc.wrapper', 'mc.vector'],
     ext_modules=[
         CTypes(
             'ct',
             sources=files,
-            include_dirs=['.']
+            include_dirs=['cpp']
         ),
         Extension(
             'ext',
             sources=files,
-            include_dirs=['.']
+            include_dirs=['cpp']
         )
     ],
     cmdclass={'build_ext': build_ext},
