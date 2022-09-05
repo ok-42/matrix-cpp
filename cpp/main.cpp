@@ -35,7 +35,7 @@ void Matrix::fill_random() {
 }
 
 double& Matrix::operator()(int r, int c) {
-    if (r >= this->rows or c >= this->columns) {
+    if (r >= this->rows || c >= this->columns) {
         throw "Index is out of bounds";
     }
     return this->values[r][c];
