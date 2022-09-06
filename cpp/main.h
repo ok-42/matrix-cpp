@@ -23,5 +23,7 @@ extern "C" {
     void print_matrix(Matrix matrix) {
         matrix.print();
     }
+    Matrix add_number(Matrix matrix, double number);
+    Matrix add_matrix(Matrix a, Matrix b);
     int main();
 }
