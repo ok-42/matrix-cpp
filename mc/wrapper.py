@@ -20,7 +20,7 @@ class Matrix(Structure):
     _fields_ = [
         ('rows', c_int),
         ('columns', c_int),
-        ('data', POINTER(POINTER(c_double))),
+        ('values', POINTER(POINTER(c_double))),
     ]
 
     @property
