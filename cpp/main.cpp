@@ -79,6 +79,28 @@ Matrix multiply(Matrix a, Matrix b) {
 }
 
 
+Matrix add_number(Matrix matrix, double number) {
+    Matrix result = Matrix(matrix.rows, matrix.columns);
+    for (int i = 0; i < matrix.rows; i++) {
+        for (int j = 0; j < matrix.columns; j++) {
+            result(i, j) = matrix(i, j) + number;
+        }
+    }
+    return result;
+}
+
+
+Matrix add_matrix(Matrix a, Matrix b) {
+    Matrix result = Matrix(a.rows, a.columns);
+    for (int i = 0; i < a.rows; i++) {
+        for (int j = 0; j < a.columns; j++) {
+            result(i, j) = a(i, j) + b(i, j);
+        }
+    }
+    return result;
+}
+
+
 int main() {
     double** data_a = new double* [3];
     data_a[0] = new double[2] {1, 2};

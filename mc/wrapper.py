@@ -9,11 +9,12 @@ from ctypes import (
     c_int,
     cast,
 )
-from typing import List, Tuple
+from typing import List, Tuple, Union
 
 from .vector import make_vector_python, Vector
 
 MatrixType = List[List[float]]
+NumberType = Union[int, float]
 
 
 class Matrix(Structure):
@@ -35,6 +36,18 @@ class Matrix(Structure):
             for j in range(self.columns):
                 result[i][j] = self.values[i][j]
         return result
+
+    def __add__(self, other: Union[Matrix, NumberType]) -> Matrix:
+        """Add a number to all matrix elements or add two matrices of the same shape."""
+        if isinstance(other, Matrix):
+            if self.shape == other.shape:
+                return add_matrix(self, other)
+            else:
+                raise Exception('Matrices should have the same shape')
+        elif isinstance(other, NumberType):
+            return add_number(self, c_double(other))
+        else:
+            raise Exception('Invalid argument type. It should be a matrix or a number')
 
     def __matmul__(self, other: Matrix) -> Matrix:
         return multiply(self, other)
@@ -66,6 +79,14 @@ print_matrix.restype = None
 multiply = lib.multiply
 multiply.argtypes = [Matrix, Matrix]
 multiply.restype = Matrix
+
+add_number = lib.add_number
+add_number.argtypes = [Matrix, c_double]
+add_number.restype = Matrix
+
+add_matrix = lib.add_matrix
+add_matrix.argtypes = [Matrix, Matrix]
+add_matrix.restype = Matrix
 
 
 def make_matrix_python(values: MatrixType):
