@@ -9,7 +9,7 @@ from ctypes import (
     c_int,
     cast,
 )
-from typing import List, Tuple, Union
+from typing import List, Tuple, Union, get_args
 
 from ._utils import import_function
 from .vector import make_vector_python, Vector
@@ -45,7 +45,7 @@ class Matrix(Structure):
                 return add_matrix(self, other)
             else:
                 raise Exception('Matrices should have the same shape')
-        elif isinstance(other, NumberType):
+        elif isinstance(other, get_args(NumberType)):
             return add_number(self, c_double(other))
         else:
             raise Exception('Invalid argument type. It should be a matrix or a number')
