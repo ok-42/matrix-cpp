@@ -27,6 +27,15 @@ class Matrix(Structure):
     def shape(self) -> Tuple[int, int]:
         return self.rows, self.columns
 
+    @property
+    def list(self) -> MatrixType:
+        """Matrix representation as a Python list of lists of floats."""
+        result: MatrixType = [[0 for i in range(self.rows)] for j in range(self.columns)]
+        for i in range(self.rows):
+            for j in range(self.columns):
+                result[i][j] = self.values[i][j]
+        return result
+
     def __matmul__(self, other: Matrix) -> Matrix:
         return multiply(self, other)
 
