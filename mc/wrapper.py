@@ -9,7 +9,7 @@ from ctypes import (
     c_int,
     cast,
 )
-from typing import List
+from typing import List, Tuple
 
 from .vector import make_vector_python, Vector
 
@@ -22,6 +22,10 @@ class Matrix(Structure):
         ('columns', c_int),
         ('data', POINTER(POINTER(c_double))),
     ]
+
+    @property
+    def shape(self) -> Tuple[int, int]:
+        return self.rows, self.columns
 
     def __matmul__(self, other: Matrix) -> Matrix:
         return multiply(self, other)
