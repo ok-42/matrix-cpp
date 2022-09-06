@@ -39,6 +39,12 @@ class Matrix(Structure):
     def __matmul__(self, other: Matrix) -> Matrix:
         return multiply(self, other)
 
+    def __str__(self) -> str:
+        result = ''
+        for row in self.list:
+            result += '\t'.join(map(str, row)) + '\n'
+        return result
+
 
 lib = CDLL(str(pathlib.Path(__file__).parent.parent / 'ct.so'))
 
