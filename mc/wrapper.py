@@ -32,7 +32,7 @@ class Matrix(Structure):
     @property
     def list(self) -> MatrixType:
         """Matrix representation as a Python list of lists of floats."""
-        result: MatrixType = [[0 for i in range(self.rows)] for j in range(self.columns)]
+        result: MatrixType = [[0 for i in range(self.columns)] for j in range(self.rows)]
         for i in range(self.rows):
             for j in range(self.columns):
                 result[i][j] = self.values[i][j]
