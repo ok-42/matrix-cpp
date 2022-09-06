@@ -11,6 +11,7 @@ from ctypes import (
 )
 from typing import List, Tuple, Union
 
+from ._utils import import_function
 from .vector import make_vector_python, Vector
 
 MatrixType = List[List[float]]
@@ -64,9 +65,10 @@ lib = CDLL(str(pathlib.Path(__file__).parent.parent / 'ct.so'))
 main = lib.main
 main.restype = c_int
 
-make_matrix = lib.make_matrix
-lib.make_matrix.argtypes = [c_int, POINTER(Vector)]
-lib.make_matrix.restype = Matrix
+make_matrix = import_function(
+    lib.make_matrix,
+    [c_int, POINTER(Vector)],
+    Matrix)
 
 make_matrix_orig = lib.make_matrix_orig
 lib.make_matrix_orig.argtypes = [c_int, c_int, POINTER(POINTER(c_double))]
