@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import pathlib
 from ctypes import (
     CDLL,
@@ -20,6 +22,9 @@ class Matrix(Structure):
         ('columns', c_int),
         ('data', POINTER(POINTER(c_double))),
     ]
+
+    def __matmul__(self, other: Matrix) -> Matrix:
+        return multiply(self, other)
 
 
 lib = CDLL(str(pathlib.Path(__file__).parent.parent / 'ct.so'))
