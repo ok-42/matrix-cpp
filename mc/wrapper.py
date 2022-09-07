@@ -51,6 +51,8 @@ class Matrix(Structure):
             raise Exception('Invalid argument type. It should be a matrix or a number')
 
     def __matmul__(self, other: Matrix) -> Matrix:
+        if self.column != other.rows:
+            raise Exception('Wrong matrices dimensionality')
         return multiply(self, other)
 
     def __str__(self) -> str:
