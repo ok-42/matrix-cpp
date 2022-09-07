@@ -55,6 +55,9 @@ class Matrix(Structure):
             raise Exception('Wrong matrices dimensionality')
         return multiply(self, other)
 
+    def __repr__(self) -> str:
+        return self.__str__()
+
     def __str__(self) -> str:
         result = ''
         for row in self.list:
