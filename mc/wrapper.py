@@ -124,26 +124,3 @@ def make_matrix_python_2(values: MatrixType):
         POINTER(POINTER(c_double))
     )
     return make_matrix_orig(c_int(rows), c_int(cols), in_ptr)
-
-
-a = make_matrix_python([
-    [1, 2, 3],
-    [5, 3, 1]])
-
-b = make_matrix_python([
-    [8, 2],
-    [5, 3],
-    [6, 2]])
-
-c = multiply(a, b)
-
-print('Matrix A:')
-print_matrix(a)
-print('Matrix B:')
-print_matrix(b)
-print('Result:')
-print_matrix(c)
-
-print('Start')
-main()
-print('End')
