@@ -19,6 +19,7 @@ NumberType = Union[int, float]
 
 
 class Matrix(Structure):
+
     _fields_ = [
         ('rows', c_int),
         ('columns', c_int),
@@ -26,17 +27,18 @@ class Matrix(Structure):
     ]
 
     @property
-    def shape(self) -> Tuple[int, int]:
-        return self.rows, self.columns
-
-    @property
     def list(self) -> MatrixType:
         """Matrix representation as a Python list of lists of floats."""
+        # noinspection PyUnusedLocal
         result: MatrixType = [[0 for i in range(self.columns)] for j in range(self.rows)]
         for i in range(self.rows):
             for j in range(self.columns):
                 result[i][j] = self.values[i][j]
         return result
+
+    @property
+    def shape(self) -> Tuple[int, int]:
+        return self.rows, self.columns
 
     def __add__(self, other: Union[Matrix, NumberType]) -> Matrix:
         """Add a number to all matrix elements or add two matrices of the same shape."""
@@ -111,7 +113,7 @@ add_matrix.argtypes = [Matrix, Matrix]
 add_matrix.restype = Matrix
 
 
-def make_matrix_python(values: MatrixType):
+def make_matrix_python(values: MatrixType) -> Matrix:
     vectors: List[Vector] = []
     for row in values:
         vectors.append(make_vector_python(row))
@@ -120,7 +122,7 @@ def make_matrix_python(values: MatrixType):
 
 
 # https://stackoverflow.com/a/58262388
-def make_matrix_python_2(values: MatrixType):
+def make_matrix_python_2(values: MatrixType) -> Matrix:
     rows = len(values)
     cols = len(values[0])
     values = tuple(tuple(row) for row in values)
