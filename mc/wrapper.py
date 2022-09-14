@@ -64,6 +64,13 @@ class Matrix(Structure):
             result += '\t'.join(map(str, row)) + '\n'
         return result
 
+    def __sub__(self, other: Union[Matrix, NumberType]) -> Matrix:
+        if isinstance(other, Matrix):
+            return self.__add__(change_sign(other))
+        elif isinstance(other, get_args(NumberType)):
+            return self.__add__(-other)
+        raise Exception('Invalid argument type. It should be a matrix or a number')
+
 
 lib = CDLL(str(pathlib.Path(__file__).parent.parent / 'ct.so'))
 
@@ -90,6 +97,10 @@ multiply.restype = Matrix
 add_number = lib.add_number
 add_number.argtypes = [Matrix, c_double]
 add_number.restype = Matrix
+
+change_sign = lib.change_sign
+change_sign.argtypes = [Matrix]
+change_sign.restype = Matrix
 
 add_matrix = lib.add_matrix
 add_matrix.argtypes = [Matrix, Matrix]
