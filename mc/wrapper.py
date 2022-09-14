@@ -55,6 +55,9 @@ class Matrix(Structure):
             raise Exception('Wrong matrices dimensionality')
         return multiply(self, other)
 
+    def __neg__(self) -> Matrix:
+        return change_sign(self)
+
     def __repr__(self) -> str:
         return self.__str__()
 
