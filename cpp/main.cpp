@@ -90,6 +90,17 @@ Matrix add_number(Matrix matrix, double number) {
 }
 
 
+Matrix change_sign(Matrix matrix) {
+    Matrix result = matrix;
+    for (int i = 0; i < matrix.rows; i++) {
+        for (int j = 0; j < matrix.columns; j++) {
+            result(i, j) = -matrix(i, j);
+        }
+    }
+    return result;
+}
+
+
 Matrix add_matrix(Matrix a, Matrix b) {
     Matrix result = Matrix(a.rows, a.columns);
     for (int i = 0; i < a.rows; i++) {

@@ -24,6 +24,7 @@ extern "C" {
         matrix.print();
     }
     Matrix add_number(Matrix matrix, double number);
+    Matrix change_sign(Matrix matrix);
     Matrix add_matrix(Matrix a, Matrix b);
     int main();
 }
