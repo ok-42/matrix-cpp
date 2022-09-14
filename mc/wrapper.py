@@ -9,7 +9,7 @@ from ctypes import (
     c_int,
     cast,
 )
-from typing import List, Tuple, Union, get_args
+from typing import Callable, List, Tuple, Union, get_args
 
 from ._utils import import_function
 from .vector import make_vector_python, Vector
@@ -80,7 +80,7 @@ lib = CDLL(str(pathlib.Path(__file__).parent.parent / 'ct.so'))
 main = lib.main
 main.restype = c_int
 
-make_matrix = import_function(
+make_matrix: Callable[[c_int, POINTER(Vector)], Matrix] = import_function(
     lib.make_matrix,
     [c_int, POINTER(Vector)],
     Matrix)
@@ -101,9 +101,10 @@ add_number = lib.add_number
 add_number.argtypes = [Matrix, c_double]
 add_number.restype = Matrix
 
-change_sign = lib.change_sign
-change_sign.argtypes = [Matrix]
-change_sign.restype = Matrix
+change_sign: Callable[[Matrix], Matrix] = import_function(
+    lib.change_sign,
+    [Matrix],
+    Matrix)
 
 add_matrix = lib.add_matrix
 add_matrix.argtypes = [Matrix, Matrix]
