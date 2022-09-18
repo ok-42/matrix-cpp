@@ -112,6 +112,18 @@ Matrix add_matrix(Matrix a, Matrix b) {
 }
 
 
+bool eq_matrix(Matrix a, Matrix b) {
+    for (int i = 0; i < a.rows; i++) {
+        for (int j = 0; j < a.columns; j++) {
+            if (a(i, j) != b(i, j)) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+
 int main() {
     double** data_a = new double* [3];
     data_a[0] = new double[2] {1, 2};
