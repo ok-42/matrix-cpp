@@ -11,7 +11,7 @@ from ctypes import (
 )
 from typing import Callable, List, Tuple, Union, get_args
 
-from ._utils import import_function
+from .utils import import_function
 from .vector import make_vector_python, Vector
 
 MatrixType = List[List[float]]
