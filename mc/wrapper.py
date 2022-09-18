@@ -30,8 +30,7 @@ class Matrix(Structure):
     columns: int
     values: MatrixType
 
-    @property
-    def list(self) -> MatrixType:
+    def tolist(self) -> MatrixType:
         """Matrix representation as a Python list of lists of floats."""
         # noinspection PyUnusedLocal
         result: MatrixType = [[0 for i in range(self.columns)] for j in range(self.rows)]
@@ -69,7 +68,7 @@ class Matrix(Structure):
 
     def __str__(self) -> str:
         result = ''
-        for row in self.list:
+        for row in self.tolist():
             result += '\t'.join(map(str, row)) + '\n'
         return result
 
