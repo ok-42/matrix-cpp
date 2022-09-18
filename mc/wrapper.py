@@ -88,10 +88,8 @@ lib = CDLL(str(pathlib.Path(__file__).parent.parent / 'ct.so'))
 main = lib.main
 main.restype = c_int
 
-make_matrix: Callable[[c_int, POINTER(Vector)], Matrix] = import_function(
-    lib.make_matrix,
-    [c_int, POINTER(Vector)],
-    Matrix)
+typ = Callable[[c_int, POINTER(Vector)], Matrix]
+make_matrix: typ = import_function(lib.make_matrix, typ)
 
 make_matrix_orig = lib.make_matrix_orig
 lib.make_matrix_orig.argtypes = [c_int, c_int, POINTER(POINTER(c_double))]
@@ -109,10 +107,8 @@ add_number = lib.add_number
 add_number.argtypes = [Matrix, c_double]
 add_number.restype = Matrix
 
-change_sign: Callable[[Matrix], Matrix] = import_function(
-    lib.change_sign,
-    [Matrix],
-    Matrix)
+typ = Callable[[Matrix], Matrix]
+change_sign: typ = import_function(lib.change_sign, typ)
 
 add_matrix = lib.add_matrix
 add_matrix.argtypes = [Matrix, Matrix]
