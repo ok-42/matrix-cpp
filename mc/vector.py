@@ -30,16 +30,3 @@ print_vector.restype = None
 def make_vector_python(values: List[float]) -> Vector:
     length = len(values)
     return make_vector(length, (c_double * length)(*values))
-
-
-values_1 = [10, 20, 30]
-values_2 = [40, 50, 60]
-
-v_1 = make_vector_python(values_1)
-v_2 = make_vector_python(values_2)
-
-print('Vector 1:')
-print_vector(v_1)
-
-print('Vector 2:')
-print_vector(v_2)
