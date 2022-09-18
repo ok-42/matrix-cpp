@@ -24,6 +24,10 @@ values_sum = [
     [6, 8],
     [10, 12]]
 
+values_dif = [
+    [-4, -4],
+    [-4, -4]]
+
 matrix_1 = mc.make_matrix_python(values_1)
 matrix_2 = mc.make_matrix_python(values_2)
 
@@ -50,6 +54,14 @@ class TestMatrix(unittest.TestCase):
             mc.make_matrix_python([
                 [19, 22],
                 [43, 50]]))
+
+    def test_sub(self):
+        self.assertEqual(
+            matrix_1 - (-1.5),
+            mc.make_matrix_python(values_1_plus_const))
+        self.assertEqual(
+            matrix_1 - matrix_2,
+            mc.make_matrix_python(values_dif))
 
 
 if __name__ == '__main__':
