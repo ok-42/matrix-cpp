@@ -5,3 +5,10 @@ python3 -m venv venv
 python3 setup.py install
 python3 test/benchmark.py
 ```
+
+
+# Tests
+
+```bash
+python3 -m unittest test/test.py
+```

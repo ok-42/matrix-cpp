@@ -1,6 +1,10 @@
+import sys
 import unittest
 
-import mc
+original_path = sys.path
+sys.path = original_path[1:]
+import mc  # noqa: E402
+sys.path = original_path
 
 values_1 = [
     [1, 2],
