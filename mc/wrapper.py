@@ -26,6 +26,10 @@ class Matrix(Structure):
         ('values', POINTER(POINTER(c_double))),
     ]
 
+    rows: int
+    columns: int
+    values: MatrixType
+
     @property
     def list(self) -> MatrixType:
         """Matrix representation as a Python list of lists of floats."""
@@ -53,7 +57,7 @@ class Matrix(Structure):
             raise Exception('Invalid argument type. It should be a matrix or a number')
 
     def __matmul__(self, other: Matrix) -> Matrix:
-        if self.column != other.rows:
+        if self.columns != other.rows:
             raise Exception('Wrong matrices dimensionality')
         return multiply(self, other)
 
