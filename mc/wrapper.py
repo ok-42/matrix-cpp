@@ -55,6 +55,9 @@ class Matrix(Structure):
         else:
             raise Exception('Invalid argument type. It should be a matrix or a number')
 
+    def __eq__(self, other: Matrix) -> bool:
+        return self.shape == other.shape and self.tolist() == other.tolist()
+
     def __matmul__(self, other: Matrix) -> Matrix:
         if self.columns != other.rows:
             raise Exception('Wrong matrices dimensionality')
