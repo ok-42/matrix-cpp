@@ -56,7 +56,7 @@ class Matrix(Structure):
             raise Exception('Invalid argument type. It should be a matrix or a number')
 
     def __eq__(self, other: Matrix) -> bool:
-        return self.shape == other.shape and self.tolist() == other.tolist()
+        return self.shape == other.shape and eq_matrix(self, other)
 
     def __matmul__(self, other: Matrix) -> Matrix:
         if self.columns != other.rows:
@@ -113,6 +113,9 @@ change_sign: typ = import_function(lib.change_sign, typ)
 add_matrix = lib.add_matrix
 add_matrix.argtypes = [Matrix, Matrix]
 add_matrix.restype = Matrix
+
+typ = Callable[[Matrix, Matrix], bool]
+eq_matrix: typ = import_function(lib.eq_matrix, typ)
 
 
 def make_matrix_python(values: MatrixType) -> Matrix:
