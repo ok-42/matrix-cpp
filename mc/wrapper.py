@@ -40,6 +40,14 @@ class Matrix(Structure):
         return result
 
     @property
+    def det(self) -> float:
+        """Matrix determinant with Laplace expansion. Does not comply with numpy naming."""
+        if self.rows == self.columns:
+            return determinant(self)
+        else:
+            raise Exception('The matrix should be square')
+
+    @property
     def shape(self) -> Tuple[int, int]:
         return self.rows, self.columns
 
@@ -116,6 +124,9 @@ add_matrix.restype = Matrix
 
 typ = Callable[[Matrix, Matrix], bool]
 eq_matrix: typ = import_function(lib.eq_matrix, typ)
+
+typ = Callable[[Matrix], float]
+determinant: typ = import_function(lib.determinant, typ)
 
 
 def make_matrix_python(values: MatrixType) -> Matrix:
