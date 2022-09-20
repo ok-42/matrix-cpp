@@ -34,6 +34,9 @@ matrix_2 = mc.make_matrix_python(values_2)
 
 class TestMatrix(unittest.TestCase):
 
+    def test_det(self):
+        self.assertAlmostEqual(matrix_1.det, -2)
+
     def test_shape(self):
         self.assertEqual(matrix_1.shape, (2, 2))
 
