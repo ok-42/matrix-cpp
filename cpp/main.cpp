@@ -124,6 +124,44 @@ bool eq_matrix(Matrix a, Matrix b) {
 }
 
 
+double determinant(Matrix matrix) {
+    int n = matrix.rows;
+    switch (n) {
+        case 1:
+            return matrix(0, 0);
+        case 2:
+            return matrix(0, 0) * matrix(1, 1) - matrix(0, 1) * matrix(1, 0);
+
+        // Laplace expansion with 0-th row
+        default:
+
+            double result = 0;
+
+            // Iterate the 0-th row
+            for (int a = 0; a < n; a++) {
+
+                // Create a submatrix for a 0-th row element
+                Matrix submatrix = Matrix(n - 1, n - 1);
+                for (int i = 0; i < n; i++) {
+                    for (int j = 0; j < n; j++) {
+                        // Ignore values in the 0-th row and a-th column
+                        if (0 == i) i++;
+                        if (a == j) j++;
+                        submatrix(i, j) = matrix(i, j);
+                    }
+                }
+
+                result += \
+                    pow(-1, (0 + a)) *\
+                    matrix(0, a) *\
+                    determinant(submatrix);
+            }
+
+            return result;
+    }
+}
+
+
 int main() {
     double** data_a = new double* [3];
     data_a[0] = new double[2] {1, 2};
