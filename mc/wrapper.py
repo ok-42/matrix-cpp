@@ -93,9 +93,6 @@ class Matrix(Structure):
 
 lib = CDLL(str(pathlib.Path(__file__).parent.parent / 'ct.so'))
 
-main = lib.main
-main.restype = c_int
-
 typ = Callable[[c_int, POINTER(Vector)], Matrix]
 make_matrix: typ = import_function(lib.make_matrix, typ)
 
@@ -107,20 +104,17 @@ print_matrix = lib.print_matrix
 print_matrix.argtypes = [Matrix]
 print_matrix.restype = None
 
-multiply = lib.multiply
-multiply.argtypes = [Matrix, Matrix]
-multiply.restype = Matrix
+typ = Callable[[Matrix, Matrix], Matrix]
+multiply: typ = import_function(lib.multiply, typ)
 
-add_number = lib.add_number
-add_number.argtypes = [Matrix, c_double]
-add_number.restype = Matrix
+typ = Callable[[Matrix, float], Matrix]
+add_number: typ = import_function(lib.add_number, typ)
 
 typ = Callable[[Matrix], Matrix]
 change_sign: typ = import_function(lib.change_sign, typ)
 
-add_matrix = lib.add_matrix
-add_matrix.argtypes = [Matrix, Matrix]
-add_matrix.restype = Matrix
+typ = Callable[[Matrix, Matrix], Matrix]
+add_matrix: typ = import_function(lib.add_matrix, typ)
 
 typ = Callable[[Matrix, Matrix], bool]
 eq_matrix: typ = import_function(lib.eq_matrix, typ)
