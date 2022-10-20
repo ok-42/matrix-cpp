@@ -30,12 +30,17 @@ values_dif = [
 
 matrix_1 = mc.make_matrix_python(values_1)
 matrix_2 = mc.make_matrix_python(values_2)
+matrix_3 = mc.make_matrix_python([
+    [1, 2, 4],
+    [3, 8, 5],
+    [9, 6, 7]])
 
 
 class TestMatrix(unittest.TestCase):
 
     def test_det(self):
         self.assertAlmostEqual(matrix_1.det, -2)
+        self.assertAlmostEqual(matrix_3.det, -142)
 
     def test_shape(self):
         self.assertEqual(matrix_1.shape, (2, 2))
