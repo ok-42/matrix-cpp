@@ -142,12 +142,14 @@ double determinant(Matrix matrix) {
 
                 // Create a submatrix for a 0-th row element
                 Matrix submatrix = Matrix(n - 1, n - 1);
-                for (int i = 0; i < n; i++) {
-                    for (int j = 0; j < n; j++) {
+                bool pass_row = false;
+                for (int i = 0; i < n - 1; i++) {
+                    bool pass_col = false;
+                    for (int j = 0; j < n - 1; j++) {
                         // Ignore values in the 0-th row and a-th column
-                        if (0 == i) i++;
-                        if (a == j) j++;
-                        submatrix(i, j) = matrix(i, j);
+                        if (0 == i) pass_row = true;
+                        if (a == j) pass_col = true;
+                        submatrix(i, j) = matrix(i + int(pass_row), j + int(pass_col));
                     }
                 }
 
