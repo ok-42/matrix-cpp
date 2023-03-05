@@ -39,3 +39,5 @@ dist/
 mc.egg-info/
 mc/__pycache__/
 venv/
+
+pcscp.json

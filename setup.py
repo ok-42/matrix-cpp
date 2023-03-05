@@ -5,9 +5,11 @@ from distutils.core import setup, Extension
 from distutils.command.build_ext import build_ext as build_ext_orig
 
 
+# noinspection PyPep8Naming
 class build_ext(build_ext_orig):
 
     def build_extension(self, ext):
+        # noinspection PyAttributeOutsideInit
         self._ctypes = isinstance(ext, CTypes)
         return super().build_extension(ext)
 
