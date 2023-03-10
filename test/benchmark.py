@@ -7,7 +7,7 @@ from typing import Callable
 # It's only required for computing speed comparison
 import numpy as np
 
-from mc.wrapper import (
+from mc.matrix import (
     make_matrix_python,
     make_matrix_python_2,
     multiply,

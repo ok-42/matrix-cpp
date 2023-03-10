@@ -35,7 +35,7 @@ files = [
 setup(
     name='mc',
     version='1.0',
-    py_modules=['mc.wrapper', 'mc.vector', 'mc.utils'],
+    py_modules=['mc.matrix', 'mc.vector', 'mc.utils'],
     ext_modules=[
         CTypes(
             'ct',
