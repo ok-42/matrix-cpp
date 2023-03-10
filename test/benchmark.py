@@ -3,6 +3,8 @@ from __future__ import annotations
 import time
 from typing import Callable
 
+# noinspection PyPackageRequirements
+# It's only required for computing speed comparison
 import numpy as np
 
 from mc.wrapper import (
@@ -18,7 +20,9 @@ def random_matrix_numpy(rows: int, columns: int) -> np.ndarray:
     return np.random.random((rows, columns))
 
 
+# noinspection PyTypeChecker
 def random_matrix_python(rows: int, columns: int) -> MatrixType:
+    """Converts random numpy matrix to Python list of lists."""
     return random_matrix_numpy(rows, columns).tolist()
 
 
@@ -45,6 +49,7 @@ class MatrixPython:
         self.values = values
 
     def __matmul__(self, other: MatrixPython) -> MatrixPython:
+        # noinspection PyUnusedLocal
         result: MatrixType = [[0 for j in range(other.columns)] for i in range(self.rows)]
         matrix_1 = self.values
         matrix_2 = other.values
@@ -57,6 +62,7 @@ class MatrixPython:
         return MatrixPython(result)
 
 
+# noinspection PyUnusedLocal
 def measure_cpp_1():
     """Multiplies two random matrices using C++ code from this project.
     The matrices are built as arrays of vectors."""
@@ -65,6 +71,7 @@ def measure_cpp_1():
     m = multiply(m_1, m_2)
 
 
+# noinspection PyUnusedLocal
 def measure_cpp_2():
     """Multiplies two random matrices using C++ code from this project.
     The values are passed to matrix constructors as ``double**``."""
@@ -73,6 +80,7 @@ def measure_cpp_2():
     m = multiply(m_1, m_2)
 
 
+# noinspection PyUnusedLocal
 def measure_numpy():
     """Multiplies numpy arrays as matrices."""
     m_1 = random_matrix_numpy(90, 30)
@@ -80,6 +88,7 @@ def measure_numpy():
     m = m_1 @ m_2
 
 
+# noinspection PyUnusedLocal
 def measure_python():
     """Multiplies Python lists of lists, i.e. ``list[list[float]]``, as matrices."""
     m_1 = MatrixPython(random_matrix_python(90, 30))
