@@ -26,6 +26,7 @@ extern "C" {
     Matrix add_number(Matrix matrix, double number);
     Matrix change_sign(Matrix matrix);
     Matrix add_matrix(Matrix a, Matrix b);
+    Matrix transpose_matrix(Matrix a);
     bool eq_matrix(Matrix a, Matrix b);
     double determinant(Matrix matrix);
     int main();

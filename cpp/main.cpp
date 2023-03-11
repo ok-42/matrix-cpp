@@ -112,6 +112,17 @@ Matrix add_matrix(Matrix a, Matrix b) {
 }
 
 
+Matrix transpose_matrix(Matrix a) {
+	Matrix result = Matrix(a.columns, a.rows);
+	for (int i = 0; i < a.rows; i++) {
+        for (int j = 0; j < a.columns; j++) {
+            result(j, i) = a(i, j);
+        }
+    }
+    return result;
+}
+
+
 bool eq_matrix(Matrix a, Matrix b) {
     for (int i = 0; i < a.rows; i++) {
         for (int j = 0; j < a.columns; j++) {

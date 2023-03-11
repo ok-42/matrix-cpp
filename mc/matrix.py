@@ -51,6 +51,11 @@ class Matrix(Structure):
     def shape(self) -> Tuple[int, int]:
         return self.rows, self.columns
 
+    # noinspection PyPep8Naming
+    @property
+    def T(self) -> Matrix:
+        return transpose_matrix(self)
+
     def __add__(self, other: Union[Matrix, NumberType]) -> Matrix:
         """Add a number to all matrix elements or add two matrices of the same shape."""
         if isinstance(other, Matrix):
@@ -115,6 +120,9 @@ change_sign: typ = import_function(lib.change_sign, typ)
 
 typ = Callable[[Matrix, Matrix], Matrix]
 add_matrix: typ = import_function(lib.add_matrix, typ)
+
+typ = Callable[[Matrix], Matrix]
+transpose_matrix: typ = import_function(lib.transpose_matrix, typ)
 
 typ = Callable[[Matrix, Matrix], bool]
 eq_matrix: typ = import_function(lib.eq_matrix, typ)
